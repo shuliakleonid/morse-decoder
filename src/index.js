@@ -35,10 +35,27 @@ const MORSE_TABLE = {
     '---..':  '8',
     '----.':  '9',
     '-----':  '0',
+    ' ':      ' ',
 };
-
+ 
 function decode(expr) {
-    // write your solution here
+    let express = expr.split('')
+let arrTen = express.reduce(function(result, value, index, array) {
+  if (index % 10 === 0)
+    result.push(array.slice(index, index + 10));
+  return result;
+ }, []);
+
+  let arrayTen = arrTen.map( num => num.join(''));
+let morse =[];
+let find = "**********"
+ for (let i= 0; i< arrayTen.length;i++){
+   morse.push(arrayTen[i].replace(/00/gi,"").replace(/10/gi,".").replace(/11/gi,"-").replace(find," "))
+ }
+      let answer = morse
+      
+      return answer.map(a => MORSE_TABLE[a]).join('');
+ 
 }
 
 module.exports = {
